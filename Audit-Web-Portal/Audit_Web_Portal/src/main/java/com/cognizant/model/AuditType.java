@@ -18,6 +18,14 @@ public class AuditType {
 	/**
 	 * Variable auditType is used to store the Type of Audit
 	 */
-	String auditType;
+	private String auditType;
+
+	public String getAuditType() {
+		return auditType;
+	}
+
+	public void setAuditType(String auditType) {
+		this.auditType = auditType;
+	}
 
 }

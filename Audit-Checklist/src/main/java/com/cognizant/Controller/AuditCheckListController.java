@@ -62,22 +62,23 @@ public class AuditCheckListController {
 		if(tokenService.checkTokenValidity(token)) {
 			System.out.println("In checklist" + auditType.getAuditType());
 			try {
+				
 			questionsList = questionsService.getQuestions(auditType.getAuditType());
 			}catch(IndexOutOfBoundsException e) {
-				log.error(env.getProperty("string.null.exception")); 
-				log.info(env.getProperty("string.end"));
+				//log.error(env.getProperty("string.null.exception")); 
+				//log.info(env.getProperty("string.end"));
 				responseEntity= new ResponseEntity<String>(env.getProperty("string.null"),HttpStatus.INTERNAL_SERVER_ERROR);
 				return responseEntity;
 			}
 			responseEntity = new ResponseEntity<List<QuestionsEntity>>(questionsList,HttpStatus.OK);
-			log.debug(env.getProperty("string.res"),responseEntity);
-			log.info(env.getProperty("string.end"));
+			//log.debug(env.getProperty("string.res"),responseEntity);
+			//log.info(env.getProperty("string.end"));
 			return responseEntity;
 			
 		}
 		else {
-			log.error(env.getProperty("string.token.exp")); 
-			log.info(env.getProperty("string.end"));
+			//log.error(env.getProperty("string.token.exp")); 
+			//log.info(env.getProperty("string.end"));
 			
 			responseEntity= new ResponseEntity<String>(env.getProperty("string.token.exp"),HttpStatus.FORBIDDEN);
 			return responseEntity;
@@ -97,18 +98,21 @@ public class AuditCheckListController {
 	public ResponseEntity<?> saveResponses(@RequestHeader(name = "Authorization",required = true)String token,@RequestBody List<QuestionsEntity> questionsResponse){
 		List<QuestionsEntity> questionsList = new ArrayList<>();
 		ResponseEntity<?> responseEntity;
+		System.out.println("123out checklist" );
+		System.out.println("2345hi bitchhhhhhhhhhhhhhhhhhhhhhhhhh" );
 		if(tokenService.checkTokenValidity(token)) {
 			questionsList = questionsService.saveResponses(questionsResponse);
 			responseEntity = new ResponseEntity<List<QuestionsEntity>>(questionsList,HttpStatus.OK);
-			log.debug(env.getProperty("string.res"),responseEntity);
-			log.info(env.getProperty("string.end"));
-
+			//log.debug(env.getProperty("string.res"),responseEntity);
+			//log.info(env.getProperty("string.end"));
+			System.out.println("123out checklist" );
+			System.out.println("2345hi bitchhhhhhhhhhhhhhhhhhhhhhhhhh" );
 			return responseEntity;
 		}
 		else {
-			log.error(env.getProperty("string.token.exp")); 
-			log.info(env.getProperty("string.end"));
-
+			//log.error(env.getProperty("string.token.exp")); 
+			//log.info(env.getProperty("string.end"));
+			
 			responseEntity= new ResponseEntity<String>(env.getProperty("string.token.exp"),HttpStatus.FORBIDDEN);
 			return responseEntity;
 		}

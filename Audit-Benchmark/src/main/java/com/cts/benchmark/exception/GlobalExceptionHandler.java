@@ -37,13 +37,13 @@ public class GlobalExceptionHandler {
 	Environment env;
 	@ExceptionHandler(FeignProxyException.class)
 	public ResponseEntity<CustomErrorResponse> handelFeignProxyException(FeignProxyException ex) {
-		log.info(env.getProperty("string.start"));
+		//log.info(env.getProperty("string.start"));
 		CustomErrorResponse response = new CustomErrorResponse();
 		response.setTimestamp(LocalDateTime.now());
 		response.setMessage(ex.getMessage());
 		response.setStatus(HttpStatus.NOT_FOUND);
 		response.setReason(env.getProperty("feign.null"));
-		log.info(env.getProperty("string.end"));
+		//log.info(env.getProperty("string.end"));
 		return new ResponseEntity<CustomErrorResponse>(response, HttpStatus.NOT_FOUND);
 	}
 

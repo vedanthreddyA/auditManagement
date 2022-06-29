@@ -44,11 +44,11 @@ public class ManagerDetailsService implements UserDetailsService {
 	 */
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		log.debug("Start : {}", "loadUserByUsername");
+		//log.debug("Start : {}", "loadUserByUsername");
 
 		ProjectManager manager = repository.findById(username).orElseThrow( 
 				() -> new UsernameNotFoundException("User Not Found with -> username or email: " + username));
-		log.debug("End : {}", "loadUserByUsername");
+		//log.debug("End : {}", "loadUserByUsername");
 		System.out.println(manager.toString());
 		return new User(manager.getUserId(), manager.getPassword(), new ArrayList<>());
 

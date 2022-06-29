@@ -19,6 +19,18 @@ import lombok.Setter;
 public class AuthResponse {
 	private String uid;
 	private boolean isValid;
+	public boolean isValid() {
+		return isValid;
+	}
+	public void setValid(boolean isValid) {
+		this.isValid = isValid;
+	}
+	public String getUid() {
+		return uid;
+	}
+	public void setUid(String uid) {
+		this.uid = uid;
+	}
 	
 	
 

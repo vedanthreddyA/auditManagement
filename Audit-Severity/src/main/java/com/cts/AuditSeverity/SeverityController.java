@@ -96,8 +96,8 @@ public class SeverityController {
 			service.saveRequest(auditRequest);
 			return responseEntity;
 		}else {
-			log.error(env.getProperty("string.token.exp")); 
-			log.info(env.getProperty("string.end"));
+			//log.error(env.getProperty("string.token.exp")); 
+			//log.info(env.getProperty("string.end"));
 
 			responseEntity= new ResponseEntity<String>(env.getProperty("string.token.exp"),HttpStatus.FORBIDDEN);
 			return responseEntity;

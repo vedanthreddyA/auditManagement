@@ -53,7 +53,7 @@ public class AuthController {
 	
 	@GetMapping(path = "/health")
 	public ResponseEntity<?> healthCheckup() {
-		log.info("AWS Health Check");
+		//log.info("AWS Health Check");
 		return new ResponseEntity<>("Authenticated successfully", HttpStatus.OK);
 	}
 	/**
@@ -68,8 +68,8 @@ public class AuthController {
 
 	@PostMapping(value = "/login")
 	public ResponseEntity<?> login(@RequestBody UserCredentials userLoginCredentials) throws Exception{
-		log.info(env.getProperty("string.start"));
-		log.debug(userLoginCredentials.toString());
+		//log.info(env.getProperty("string.start"));
+		//log.debug(userLoginCredentials.toString());
 				
 		final UserDetails userdetails = managerDetailsService.loadUserByUsername(userLoginCredentials.getUserId());
 
@@ -77,12 +77,12 @@ public class AuthController {
 			String token = jwtutil.generateToken(userdetails);
 			ProjectManager projectManager = new ProjectManager(userLoginCredentials.getUserId(), userLoginCredentials.getPassword(), token);
 			managerDetailsService.saveUser(projectManager);
-			log.info(env.getProperty("string.end"));
+			//log.info(env.getProperty("string.end"));
 			return new ResponseEntity<>(
 					projectManager,HttpStatus.OK);
 		} else {
-			log.error(env.getProperty("string.acess.denied"));
-			log.info(env.getProperty("string.acess.denied"));
+			//log.error(env.getProperty("string.acess.denied"));
+			//log.info(env.getProperty("string.acess.denied"));
 			throw new LoginFailedException(env.getProperty("string.reason.loginfail"));
 
 		}
@@ -96,8 +96,8 @@ public class AuthController {
 		token = token.substring(7);
 		AuthResponse res = new AuthResponse();
 		ResponseEntity<?> response=null;
-		log.info(env.getProperty("string.start"));
-		log.debug(env.getProperty("string.auth.token"),token);
+		//log.info(env.getProperty("string.start"));
+		//log.debug(env.getProperty("string.auth.token"),token);
 		try {
 				if(jwtutil.validateToken(token)) {
 			
@@ -108,7 +108,7 @@ public class AuthController {
 		}
 		catch(Exception e) {
 			res.setValid(false);
-			log.info(env.getProperty("string.end"));
+			//log.info(env.getProperty("string.end"));
 			if(e.getMessage().contains(env.getProperty("token.expired")))
 				response =  new ResponseEntity<String>(env.getProperty("token.expired"),HttpStatus.FORBIDDEN);
 			if(e.getMessage().contains(env.getProperty("auth.failed")))
@@ -116,7 +116,7 @@ public class AuthController {
 			response = new ResponseEntity<>(res,HttpStatus.FORBIDDEN);
 			return response;
 		}
-		log.info(env.getProperty("string.end"));
+		//log.info(env.getProperty("string.end"));
 		response = new ResponseEntity<AuthResponse>(res,HttpStatus.OK);
 		return response;
 

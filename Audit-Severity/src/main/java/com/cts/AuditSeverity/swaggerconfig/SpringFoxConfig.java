@@ -45,7 +45,6 @@ public class SpringFoxConfig {
 				.apis(RequestHandlerSelectors.basePackage(env.getProperty("string.main.package")))              
 				.paths(PathSelectors.any())                          
 				.build().apiInfo(apiDetails()); 
-		log.debug("Docket{}:", docket);
 		return docket;
 	}
 	
@@ -71,7 +70,6 @@ public class SpringFoxConfig {
 				.contact(new Contact(env.getProperty("conctact.name"),env.getProperty("contact.web"),env.getProperty("contact.email")))
 				.version(env.getProperty("string.swagg.ver"))		
 				.build();
-		log.debug("API Info{}:", apiInfo);
 		return apiInfo;
 	}
 }

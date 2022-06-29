@@ -16,4 +16,12 @@ import lombok.Setter;
 public class Questions {
 	
 	private List<QuestionsEntity> questionsEntity;
+
+	public List<QuestionsEntity> getQuestionsEntity() {
+		return questionsEntity;
+	}
+
+	public void setQuestionsEntity(List<QuestionsEntity> questionsEntity) {
+		this.questionsEntity = questionsEntity;
+	}
 }

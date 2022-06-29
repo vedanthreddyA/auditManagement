@@ -26,6 +26,18 @@ public class AuditBenchmark {
 	 * Variable accNoAnswers is used to store the No Answers
 	 */
 	private int accNoAnswers;
+	public String getAuditType() {
+		return auditType;
+	}
+	public void setAuditType(String auditType) {
+		this.auditType = auditType;
+	}
+	public int getAccNoAnswers() {
+		return accNoAnswers;
+	}
+	public void setAccNoAnswers(int accNoAnswers) {
+		this.accNoAnswers = accNoAnswers;
+	}
 
 	
 }

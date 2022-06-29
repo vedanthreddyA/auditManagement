@@ -40,13 +40,58 @@ public class AuditRequestModel {
 	@Column(name="OwnerName")
 	private String ownerName;
 	
+	public AuditRequestModel()
+	{
+		
+	}
+	
 	public AuditRequestModel(AuditDetailModel auditDetail,String projectName, String managerName, String applicationOwnerName) {
 
 		super();
+		this.setAuditDetail(auditDetail);
+		this.setProjectName(projectName);
+		this.setManagerName(managerName);
+		this.setOwnerName(applicationOwnerName);
+	}
+
+	public int getRequestId() {
+		return requestId;
+	}
+
+	public void setRequestId(int requestId) {
+		this.requestId = requestId;
+	}
+
+	public AuditDetailModel getAuditDetail() {
+		return auditDetail;
+	}
+
+	public void setAuditDetail(AuditDetailModel auditDetail) {
 		this.auditDetail = auditDetail;
+	}
+
+	public String getProjectName() {
+		return projectName;
+	}
+
+	public void setProjectName(String projectName) {
 		this.projectName = projectName;
+	}
+
+	public String getManagerName() {
+		return managerName;
+	}
+
+	public void setManagerName(String managerName) {
 		this.managerName = managerName;
-		this.ownerName = applicationOwnerName;
+	}
+
+	public String getOwnerName() {
+		return ownerName;
+	}
+
+	public void setOwnerName(String ownerName) {
+		this.ownerName = ownerName;
 	}
 	
 	

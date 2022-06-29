@@ -61,7 +61,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 
 		String username = null;
         String jwt = null;
-        log.debug(authHeadder);
+        //log.debug(authHeadder);
 
         if (authHeadder != null && authHeadder.startsWith("Bearer ")) {
             jwt = authHeadder.substring(7);

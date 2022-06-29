@@ -21,5 +21,29 @@ public class ProjectDetails {
 	private String projectManagerName;
 	
 	private String applicationOwnerName;
+
+	public String getProjectName() {
+		return projectName;
+	}
+
+	public void setProjectName(String projectName) {
+		this.projectName = projectName;
+	}
+
+	public String getProjectManagerName() {
+		return projectManagerName;
+	}
+
+	public void setProjectManagerName(String projectManagerName) {
+		this.projectManagerName = projectManagerName;
+	}
+
+	public String getApplicationOwnerName() {
+		return applicationOwnerName;
+	}
+
+	public void setApplicationOwnerName(String applicationOwnerName) {
+		this.applicationOwnerName = applicationOwnerName;
+	}
 	
 }

@@ -20,5 +20,21 @@ public class AuditBenchmark {
 
 	private String auditType;
 	private Integer accNoAnswers;
-	
+	public Integer getAccNoAnswers() {
+		return accNoAnswers;
+	}
+	public void setAccNoAnswers(Integer accNoAnswers) {
+		this.accNoAnswers = accNoAnswers;
+	}
+	public String getAuditType() {
+		return auditType;
+	}
+	public void setAuditType(String auditType) {
+		this.auditType = auditType;
+	}
+	public AuditBenchmark(String auditType, int accNoAnswers)
+	{
+		this.auditType = auditType;
+		this.accNoAnswers = accNoAnswers;
+	}
 }

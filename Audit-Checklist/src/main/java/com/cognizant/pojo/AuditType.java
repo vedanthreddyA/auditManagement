@@ -18,5 +18,13 @@ import lombok.Setter;
 @NoArgsConstructor
 public class AuditType {
 
-	String auditType;
+	private String auditType;
+
+	public String getAuditType() {
+		return auditType;
+	}
+
+	public void setAuditType(String auditType) {
+		this.auditType = auditType;
+	}
 }

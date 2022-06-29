@@ -20,9 +20,21 @@ public class UserCredentials {
 	/**
 	 * This field will contain the userid
 	 */
-	String userId;
+	private String userId;
 	/**
 	 * This field will contain the password
 	 */
-	String password;
+	private String password;
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
 }

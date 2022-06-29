@@ -69,7 +69,7 @@ public class AuditPortalController {
 	@GetMapping("/loginPage")
 	public String loginPage(@ModelAttribute User user){
 		//log.info(env.getProperty("spring.start")+" "+env.getProperty("local.server.port"));
-		log.debug(user.getUserId());
+		//log.debug(user.getUserId());
 		return "login";
 	}
 	
@@ -79,8 +79,8 @@ public class AuditPortalController {
 	//@RequestMapping(value="/home",method=RequestMethod.POST)
 	@PostMapping(path = "/home")
 	public String getHome(@ModelAttribute("user") User userCredentials,HttpServletRequest request,ModelMap map) {
-		log.info(env.getProperty("string.start"));
-		log.info(userCredentials.toString());
+		//log.info(env.getProperty("string.start"));
+		//log.info(userCredentials.toString());
 		ResponseEntity<ProjectManager> token = null;
 		ProjectManager projectManager = null;
 		map.addAttribute("auditType", new AuditType());
@@ -88,14 +88,14 @@ public class AuditPortalController {
 		
 		try {
 			token = (ResponseEntity<ProjectManager>) authClient.login(userCredentials);
-			 log.info(token.toString());
+			 //log.info(token.toString());
 			 projectManager = token.getBody();
 			 request.getSession().setAttribute("token", "Bearer " + projectManager.getAuthToken());
 			return "home";
 		} catch (Exception e) {
-			log.info(e.getMessage());
+			//log.info(e.getMessage());
 			map.addAttribute("msg", env.getProperty("string.invalid.cred"));
-			log.info(env.getProperty("spring.end"));
+			//log.info(env.getProperty("spring.end"));
 			return "login";
 		}
 		
@@ -107,7 +107,7 @@ public class AuditPortalController {
 	@PostMapping("/AuditCheckListQuestions")
 	public String getResponses(@ModelAttribute("projectDetails") ProjectDetails projectDetails,
 			@ModelAttribute("auditType") AuditType auditType,RedirectAttributes redirectAttributes,HttpSession request,ModelMap map){
-				log.info(env.getProperty("spring.start"));
+				//log.info(env.getProperty("spring.start"));
 				List<QuestionsEntity> questions = new ArrayList<>();
 				auditRequest.setProjectName(projectDetails.getProjectName());
 				auditRequest.setProjectManagerName(projectDetails.getProjectManagerName());
@@ -116,14 +116,14 @@ public class AuditPortalController {
 					questions =  auditCheckListProxy.getCheckList(request.getAttribute("token").toString(), auditType).getBody();
 					
 				}catch(IndexOutOfBoundsException e) {
-					log.info(e.getMessage());
+					//log.info(e.getMessage());
 					if (e.getMessage().contains(env.getProperty("string.null"))) {
 						return "internalServerError";
 					}
 				}
 				catch(Exception e) {
 					
-					log.info(e.getMessage());
+					//log.info(e.getMessage());
 					if(e.getMessage().contains(env.getProperty("string.token.exp")))
 						return "forbidden";
 				}
@@ -137,7 +137,7 @@ public class AuditPortalController {
 				questionslist.setQuestionsEntity(questions);
 				redirectAttributes.addFlashAttribute("questions",questionslist);
 				redirectAttributes.addFlashAttribute("auditType",auditType);
-				log.info(env.getProperty("spring.end"));
+				//log.info(env.getProperty("spring.end"));
 				return "redirect:/questions";
 					
 	}
@@ -147,7 +147,7 @@ public class AuditPortalController {
 	@GetMapping("/questions")
 	public String getQuestions(@ModelAttribute("questions") Questions
 	questions,@ModelAttribute("auditType") AuditType auditType,HttpSession session,ModelMap map) {
-		log.info(env.getProperty("spring.start"));
+		//log.info(env.getProperty("spring.start"));
 		ResponseEntity<?> authResponse=null;
 		try {
 			
@@ -165,7 +165,7 @@ public class AuditPortalController {
 			return "tokenExpiredPage";
 
 		}
-		log.info(env.getProperty("spring.end"));
+		//log.info(env.getProperty("spring.end"));
 		return "questions";
 		
 	}
@@ -174,7 +174,7 @@ public class AuditPortalController {
 	@PostMapping("/questions")
 	public String getResponses(@ModelAttribute("questions") Questions
 	questions,HttpSession session ) {
-		log.info(env.getProperty("spring.start"));
+		//log.info(env.getProperty("spring.start"));
 		ResponseEntity<?> authResponse = null;
 		List<QuestionsEntity> responseEntity=null;
 		List<QuestionsEntity> questionsEntity = questions.getQuestionsEntity();
@@ -197,29 +197,29 @@ public class AuditPortalController {
 		}
 		AuditDetails auditDetails = new AuditDetails(questions.getQuestionsEntity().get(0).getAuditType(),new Date());
 		auditRequest.setAuditDetails(auditDetails);
-		log.info(env.getProperty("spring.end"));
+		//log.info(env.getProperty("spring.end"));
 		return "redirect:/status";
 	}
 	/* return  status page
 	 */
 	@GetMapping("/status")
 	public String getProjectExecutionStatus(HttpSession request,ModelMap map) {
-		log.info(env.getProperty("spring.start"));
+		//log.info(env.getProperty("spring.start"));
 		AuditResponse auditResponse = null;
-		log.info(auditRequest.toString());
+		//log.info(auditRequest.toString());
 		try {
 			auditResponse = auditSeverityProxy.auditSeverity(request.getAttribute("token").toString(),auditRequest).getBody();
 			 
 		}
 		catch(Exception e) {
-			log.info(e.getMessage());
+			//log.info(e.getMessage());
 			if(e.getMessage().contains(env.getProperty("string.token.exp")))
 				return "tokenExpiredPage";
 
 			return "tokenExpiredPage";
 		}
 		map.addAttribute("auditResponse",auditResponse);
-		log.info(env.getProperty("spring.end"));
+		//log.info(env.getProperty("spring.end"));
 		return "status";
 		
 	}
@@ -230,9 +230,9 @@ public class AuditPortalController {
 	 */
 	@GetMapping(value = "/logout")
 	public String logout(HttpServletRequest request) {
-		log.info(env.getProperty("spring.start"));
+		//log.info(env.getProperty("spring.start"));
 		request.getSession().invalidate();
-		log.info(env.getProperty("spring.end"));
+		//log.info(env.getProperty("spring.end"));
 		return "redirect:/loginPage";
 	}
 

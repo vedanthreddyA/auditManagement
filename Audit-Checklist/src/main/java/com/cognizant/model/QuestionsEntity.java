@@ -42,11 +42,36 @@ public class QuestionsEntity {
 	/**
 	 * This will be the questions 
 	 */
-	@Column(name="questions")
+	@Column(name="question")
 	private String question;
 	/**
 	 * This will be the response for the question
 	 */
 	@Column(name="response")
 	private String response;
+	
+	public Integer getQuestionId() {
+		return questionId;
+	}
+	public void setQuestionId(Integer questionId) {
+		this.questionId = questionId;
+	}
+	public String getAuditType() {
+		return auditType;
+	}
+	public void setAuditType(String auditType) {
+		this.auditType = auditType;
+	}
+	public String getQuestion() {
+		return question;
+	}
+	public void setQuestion(String question) {
+		this.question = question;
+	}
+	public String getResponse() {
+		return response;
+	}
+	public void setResponse(String response) {
+		this.response = response;
+	}
 }
